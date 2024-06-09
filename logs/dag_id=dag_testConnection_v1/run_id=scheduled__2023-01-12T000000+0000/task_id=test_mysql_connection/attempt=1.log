@@ -1,0 +1,44 @@
+[2024-06-06T03:33:41.797+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:33:42.010+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [queued]>
+[2024-06-06T03:33:42.163+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [queued]>
+[2024-06-06T03:33:42.173+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:33:42.420+0000] {taskinstance.py:2330} INFO - Executing <Task(MySqlOperator): test_mysql_connection> on 2023-01-12 00:00:00+00:00
+[2024-06-06T03:33:42.495+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1243) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:33:42.504+0000] {standard_task_runner.py:63} INFO - Started process 1272 to run task
+[2024-06-06T03:33:42.499+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_mysql_connection', 'scheduled__2023-01-12T00:00:00+00:00', '--job-id', '228', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpq652v3ud']
+[2024-06-06T03:33:42.506+0000] {standard_task_runner.py:91} INFO - Job 228: Subtask test_mysql_connection
+[2024-06-06T03:33:42.940+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:33:43.841+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_mysql_connection' AIRFLOW_CTX_EXECUTION_DATE='2023-01-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-12T00:00:00+00:00'
+[2024-06-06T03:33:43.852+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:33:44.187+0000] {sql.py:276} INFO - Executing: select * from dest.pokedex
+[2024-06-06T03:33:44.421+0000] {base.py:84} INFO - Using connection ID 'mysql_conn' for task execution.
+[2024-06-06T03:33:44.599+0000] {base.py:84} INFO - Using connection ID 'mysql_conn' for task execution.
+[2024-06-06T03:33:44.717+0000] {sql.py:470} INFO - Running statement: select * from dest.pokedex, parameters: None
+[2024-06-06T03:33:44.724+0000] {sql.py:479} INFO - Rows affected: 1
+[2024-06-06T03:33:44.730+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:33:44.970+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_mysql_connection, run_id=scheduled__2023-01-12T00:00:00+00:00, execution_date=20230112T000000, start_date=20240606T033342, end_date=20240606T033344
+[2024-06-06T03:33:45.174+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T03:33:45.317+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T03:33:45.330+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-06T03:46:17.317+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:46:17.572+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [queued]>
+[2024-06-06T03:46:17.796+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [queued]>
+[2024-06-06T03:46:17.800+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:46:18.017+0000] {taskinstance.py:2330} INFO - Executing <Task(MySqlOperator): test_mysql_connection> on 2023-01-12 00:00:00+00:00
+[2024-06-06T03:46:18.187+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1677) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:46:18.272+0000] {standard_task_runner.py:63} INFO - Started process 1713 to run task
+[2024-06-06T03:46:18.250+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_mysql_connection', 'scheduled__2023-01-12T00:00:00+00:00', '--job-id', '276', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmp97a991g0']
+[2024-06-06T03:46:18.292+0000] {standard_task_runner.py:91} INFO - Job 276: Subtask test_mysql_connection
+[2024-06-06T03:46:19.119+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_mysql_connection scheduled__2023-01-12T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:46:20.212+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_mysql_connection' AIRFLOW_CTX_EXECUTION_DATE='2023-01-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-12T00:00:00+00:00'
+[2024-06-06T03:46:20.227+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:46:20.355+0000] {sql.py:276} INFO - Executing: select * from dest.pokedex
+[2024-06-06T03:46:20.423+0000] {base.py:84} INFO - Using connection ID 'mysql_conn' for task execution.
+[2024-06-06T03:46:20.453+0000] {base.py:84} INFO - Using connection ID 'mysql_conn' for task execution.
+[2024-06-06T03:46:20.506+0000] {sql.py:470} INFO - Running statement: select * from dest.pokedex, parameters: None
+[2024-06-06T03:46:20.518+0000] {sql.py:479} INFO - Rows affected: 1
+[2024-06-06T03:46:20.521+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:46:20.632+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_mysql_connection, run_id=scheduled__2023-01-12T00:00:00+00:00, execution_date=20230112T000000, start_date=20240606T034617, end_date=20240606T034620
+[2024-06-06T03:46:20.743+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T03:46:20.847+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T03:46:20.863+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,62 @@
+[2024-06-06T08:29:32.914+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T08:29:32.959+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-06T08:29:29.310072+00:00 [queued]>
+[2024-06-06T08:29:32.982+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-06T08:29:29.310072+00:00 [queued]>
+[2024-06-06T08:29:32.983+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T08:29:33.020+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_test1> on 2024-06-06 08:29:29.310072+00:00
+[2024-06-06T08:29:33.036+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'ingest_test1', 'manual__2024-06-06T08:29:29.310072+00:00', '--job-id', '317', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpcivpqc_y']
+[2024-06-06T08:29:33.042+0000] {standard_task_runner.py:91} INFO - Job 317: Subtask ingest_test1
+[2024-06-06T08:29:33.047+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3113) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T08:29:33.050+0000] {standard_task_runner.py:63} INFO - Started process 3121 to run task
+[2024-06-06T08:29:33.116+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.ingest_test1 manual__2024-06-06T08:29:29.310072+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T08:29:33.253+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='ingest_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-06T08:29:29.310072+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-06T08:29:29.310072+00:00'
+[2024-06-06T08:29:33.257+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T08:29:33.297+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-06T08:29:33.299+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-06T08:29:34.274+0000] {logging_mixin.py:188} INFO - bucket bucket0 already exists !
+[2024-06-06T08:29:34.330+0000] {logging_mixin.py:188} INFO - pkm1.csv
+[2024-06-06T08:29:34.521+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T08:29:34.522+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 52, in ingest
+    s3_Obj =s3_hook.get_key(x[0],SourceBucket)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 135, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 89, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 948, in get_key
+    obj.load(**sanitize_extra_args())
+  File "/home/airflow/.local/lib/python3.12/site-packages/boto3/resources/factory.py", line 565, in do_action
+    response = action(self, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/boto3/resources/action.py", line 88, in __call__
+    response = getattr(parent.meta.client, operation_name)(*args, **params)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 1009, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (404) when calling the HeadObject operation: Not Found
+[2024-06-06T08:29:34.538+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=etl_t1, task_id=ingest_test1, run_id=manual__2024-06-06T08:29:29.310072+00:00, execution_date=20240606T082929, start_date=20240606T082932, end_date=20240606T082934
+[2024-06-06T08:29:34.559+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 317 for task ingest_test1 (An error occurred (404) when calling the HeadObject operation: Not Found; 3121)
+[2024-06-06T08:29:34.603+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-06T08:29:34.622+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T08:29:34.625+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

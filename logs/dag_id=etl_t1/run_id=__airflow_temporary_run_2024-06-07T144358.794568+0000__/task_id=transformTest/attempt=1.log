@@ -1,0 +1,21 @@
+[2024-06-07T14:44:00.063+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-07T14:44:00.085+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.transformTest __airflow_temporary_run_2024-06-07T14:43:58.794568+00:00__ [None]>
+[2024-06-07T14:44:00.096+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.transformTest __airflow_temporary_run_2024-06-07T14:43:58.794568+00:00__ [None]>
+[2024-06-07T14:44:00.097+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-07T14:44:00.119+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): transformTest> on 2024-06-06 00:00:00+00:00
+[2024-06-07T14:44:00.129+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'transformTest', '__***_temporary_run_2024-06-07T14:43:58.794568+00:00__', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpg5ztqlzx']
+[2024-06-07T14:44:00.133+0000] {standard_task_runner.py:91} INFO - Job 24: Subtask transformTest
+[2024-06-07T14:44:00.135+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=12973) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-07T14:44:00.137+0000] {standard_task_runner.py:63} INFO - Started process 12975 to run task
+[2024-06-07T14:44:00.194+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.transformTest __airflow_temporary_run_2024-06-07T14:43:58.794568+00:00__ [running]> on host 6c00989aad97
+[2024-06-07T14:44:00.302+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='transformTest' AIRFLOW_CTX_EXECUTION_DATE='2024-06-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='__***_temporary_run_2024-06-07T14:43:58.794568+00:00__'
+[2024-06-07T14:44:00.303+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-07T14:44:00.331+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-07T14:44:00.333+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-07T14:44:00.977+0000] {s3.py:1387} INFO - Downloading source S3 file from Bucket pokedex-bucket with path 20240607/transform/20240607184629_combined.csv
+[2024-06-07T14:44:01.006+0000] {logging_mixin.py:188} INFO - /tmp/***_tmp_1txfy6gj
+[2024-06-07T14:44:01.008+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-07T14:44:01.010+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-07T14:44:01.022+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_t1, task_id=transformTest, run_id=__***_temporary_run_2024-06-07T14:43:58.794568+00:00__, execution_date=20240606T000000, start_date=20240607T144400, end_date=20240607T144401
+[2024-06-07T14:44:01.074+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-07T14:44:01.084+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

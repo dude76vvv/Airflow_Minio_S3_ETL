@@ -1,0 +1,73 @@
+[2024-06-06T03:18:53.598+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:18:53.982+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:18:54.236+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:18:54.243+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:18:54.526+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_first_connection> on 2023-01-04 00:00:00+00:00
+[2024-06-06T03:18:54.580+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_first_connection', 'scheduled__2023-01-04T00:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpqul8tip7']
+[2024-06-06T03:18:54.682+0000] {standard_task_runner.py:91} INFO - Job 18: Subtask test_first_connection
+[2024-06-06T03:18:54.704+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=265) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:18:54.712+0000] {standard_task_runner.py:63} INFO - Started process 297 to run task
+[2024-06-06T03:18:55.177+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:18:56.460+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_first_connection' AIRFLOW_CTX_EXECUTION_DATE='2023-01-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-04T00:00:00+00:00'
+[2024-06-06T03:18:56.467+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:18:56.913+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:18:56.962+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() missing 1 required positional argument: '_'
+[2024-06-06T03:18:57.088+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=dag_testConnection_v1, task_id=test_first_connection, run_id=scheduled__2023-01-04T00:00:00+00:00, execution_date=20230104T000000, start_date=20240606T031853, end_date=20240606T031857
+[2024-06-06T03:18:57.202+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 18 for task test_first_connection (<lambda>() missing 1 required positional argument: '_'; 297)
+[2024-06-06T03:18:57.396+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-06T03:18:57.579+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/models/baseoperator.py:1296 AirflowProviderDeprecationWarning: Call to deprecated class MySqlOperator. (Please use `***.providers.common.sql.operators.sql.SQLExecuteQueryOperator`.Also, you can provide `hook_params={'schema': <database>}`.)
+[2024-06-06T03:18:58.228+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T03:18:58.312+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-06T03:33:14.337+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:33:14.869+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:33:15.059+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:33:15.064+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:33:15.352+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_first_connection> on 2023-01-04 00:00:00+00:00
+[2024-06-06T03:33:15.429+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1148) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:33:15.434+0000] {standard_task_runner.py:63} INFO - Started process 1185 to run task
+[2024-06-06T03:33:15.482+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_first_connection', 'scheduled__2023-01-04T00:00:00+00:00', '--job-id', '205', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpgdhd6e9y']
+[2024-06-06T03:33:15.504+0000] {standard_task_runner.py:91} INFO - Job 205: Subtask test_first_connection
+[2024-06-06T03:33:15.890+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:33:16.527+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_first_connection' AIRFLOW_CTX_EXECUTION_DATE='2023-01-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-04T00:00:00+00:00'
+[2024-06-06T03:33:16.562+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:33:16.619+0000] {logging_mixin.py:188} INFO - testing task1
+[2024-06-06T03:33:16.620+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-06T03:33:16.624+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:33:16.665+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_first_connection, run_id=scheduled__2023-01-04T00:00:00+00:00, execution_date=20230104T000000, start_date=20240606T033314, end_date=20240606T033316
+[2024-06-06T03:33:16.747+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T03:33:16.772+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-06T03:45:39.396+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:45:39.544+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:45:39.742+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [queued]>
+[2024-06-06T03:45:39.775+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:45:39.924+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_first_connection> on 2023-01-04 00:00:00+00:00
+[2024-06-06T03:45:39.951+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1570) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:45:39.977+0000] {standard_task_runner.py:63} INFO - Started process 1594 to run task
+[2024-06-06T03:45:39.997+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_first_connection', 'scheduled__2023-01-04T00:00:00+00:00', '--job-id', '242', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpvrxvffo_']
+[2024-06-06T03:45:40.001+0000] {standard_task_runner.py:91} INFO - Job 242: Subtask test_first_connection
+[2024-06-06T03:45:40.519+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_first_connection scheduled__2023-01-04T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:45:41.123+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_first_connection' AIRFLOW_CTX_EXECUTION_DATE='2023-01-04T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2023-01-04T00:00:00+00:00'
+[2024-06-06T03:45:41.132+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:45:41.278+0000] {logging_mixin.py:188} INFO - testing task1
+[2024-06-06T03:45:41.314+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-06T03:45:41.315+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:45:41.366+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_first_connection, run_id=scheduled__2023-01-04T00:00:00+00:00, execution_date=20230104T000000, start_date=20240606T034539, end_date=20240606T034541
+[2024-06-06T03:45:41.533+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T03:45:41.591+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

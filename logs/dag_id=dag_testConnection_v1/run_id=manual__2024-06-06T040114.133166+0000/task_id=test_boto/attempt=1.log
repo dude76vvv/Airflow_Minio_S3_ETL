@@ -1,0 +1,80 @@
+[2024-06-06T04:01:17.729+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T04:01:17.775+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto manual__2024-06-06T04:01:14.133166+00:00 [queued]>
+[2024-06-06T04:01:17.800+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto manual__2024-06-06T04:01:14.133166+00:00 [queued]>
+[2024-06-06T04:01:17.801+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T04:01:17.843+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_boto> on 2024-06-06 04:01:14.133166+00:00
+[2024-06-06T04:01:17.868+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2130) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T04:01:17.871+0000] {standard_task_runner.py:63} INFO - Started process 2137 to run task
+[2024-06-06T04:01:17.884+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_boto', 'manual__2024-06-06T04:01:14.133166+00:00', '--job-id', '296', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpfzn5g2ne']
+[2024-06-06T04:01:17.895+0000] {standard_task_runner.py:91} INFO - Job 296: Subtask test_boto
+[2024-06-06T04:01:18.096+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_boto manual__2024-06-06T04:01:14.133166+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T04:01:18.402+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_boto' AIRFLOW_CTX_EXECUTION_DATE='2024-06-06T04:01:14.133166+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-06T04:01:14.133166+00:00'
+[2024-06-06T04:01:18.409+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T04:01:18.442+0000] {logging_mixin.py:188} INFO - <***.providers.amazon.aws.hooks.s3.S3Hook object at 0x7fa0a9cc4290>
+[2024-06-06T04:01:18.460+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-06T04:01:18.462+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-06T04:01:19.700+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T04:01:19.703+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/TestConnectionDag.py", line 41, in botoTest
+    exist2 = s3.check_for_key('pkm1.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 135, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 89, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 922, in check_for_key
+    obj = self.head_object(key, bucket_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 135, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 89, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 902, in head_object
+    return self.get_conn().head_object(Bucket=bucket_name, Key=key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 946, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 1072, in _emit_api_params
+    self.meta.events.emit(
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/handlers.py", line 282, in validate_bucket_name
+    if not VALID_BUCKET.search(bucket) and not VALID_S3_ARN.search(bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+[2024-06-06T04:01:19.732+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=dag_testConnection_v1, task_id=test_boto, run_id=manual__2024-06-06T04:01:14.133166+00:00, execution_date=20240606T040114, start_date=20240606T040117, end_date=20240606T040119
+[2024-06-06T04:01:19.755+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 296 for task test_boto (expected string or bytes-like object, got 'NoneType'; 2137)
+[2024-06-06T04:01:19.798+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-06T04:01:19.818+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T04:01:19.825+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

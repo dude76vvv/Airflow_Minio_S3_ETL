@@ -1,0 +1,46 @@
+[2024-06-08T07:43:41.248+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-08T07:43:41.284+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T07:43:41.301+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T07:43:41.302+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-06-08T07:43:41.334+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_test1> on 2024-06-08 07:11:19.232646+00:00
+[2024-06-08T07:43:41.357+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1628) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-08T07:43:41.359+0000] {standard_task_runner.py:63} INFO - Started process 1633 to run task
+[2024-06-08T07:43:41.369+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'ingest_test1', 'manual__2024-06-08T07:11:19.232646+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpxmtyyx19']
+[2024-06-08T07:43:41.372+0000] {standard_task_runner.py:91} INFO - Job 47: Subtask ingest_test1
+[2024-06-08T07:43:41.460+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [running]> on host 6c00989aad97
+[2024-06-08T07:43:41.705+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='ingest_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-08T07:11:19.232646+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-08T07:11:19.232646+00:00'
+[2024-06-08T07:43:41.712+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-08T07:43:41.782+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-08T07:43:41.788+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-08T07:43:42.640+0000] {logging_mixin.py:188} INFO - 20240608 here
+[2024-06-08T07:43:42.641+0000] {logging_mixin.py:188} INFO - 20240608/landing/
+[2024-06-08T07:43:42.690+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-08T07:43:42.691+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 113, in ingest2
+    csvFiles = list(filter(lambda x: x.split('.')[1] == 'csv', ls_files))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 113, in <lambda>
+    csvFiles = list(filter(lambda x: x.split('.')[1] == 'csv', ls_files))
+                                     ~~~~~~~~~~~~^^^
+IndexError: list index out of range
+[2024-06-08T07:43:42.710+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=etl_t1, task_id=ingest_test1, run_id=manual__2024-06-08T07:11:19.232646+00:00, execution_date=20240608T071119, start_date=20240608T074341, end_date=20240608T074342
+[2024-06-08T07:43:42.731+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 47 for task ingest_test1 (list index out of range; 1633)
+[2024-06-08T07:43:42.759+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-08T07:43:42.793+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-08T07:43:42.807+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

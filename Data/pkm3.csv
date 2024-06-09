@@ -1,0 +1,4 @@
+id,name,type1,type2,hp,attack,defense,speed
+2,venusaur,grass,poision,75,79,79,75
+5,charizard,fire,,69,82,72,95
+8,blastoise,water,,74,78,95,73

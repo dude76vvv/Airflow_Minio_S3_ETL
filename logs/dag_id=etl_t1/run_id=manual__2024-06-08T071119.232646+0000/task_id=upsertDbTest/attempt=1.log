@@ -1,0 +1,38 @@
+[2024-06-08T07:11:25.824+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-08T07:11:25.848+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.upsertDbTest manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T07:11:25.862+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.upsertDbTest manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T07:11:25.863+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-08T07:11:25.882+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upsertDbTest> on 2024-06-08 07:11:19.232646+00:00
+[2024-06-08T07:11:25.892+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'upsertDbTest', 'manual__2024-06-08T07:11:19.232646+00:00', '--job-id', '44', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpwkhr4p62']
+[2024-06-08T07:11:25.896+0000] {standard_task_runner.py:91} INFO - Job 44: Subtask upsertDbTest
+[2024-06-08T07:11:25.900+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=478) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-08T07:11:25.902+0000] {standard_task_runner.py:63} INFO - Started process 482 to run task
+[2024-06-08T07:11:25.957+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.upsertDbTest manual__2024-06-08T07:11:19.232646+00:00 [running]> on host 6c00989aad97
+[2024-06-08T07:11:26.104+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='upsertDbTest' AIRFLOW_CTX_EXECUTION_DATE='2024-06-08T07:11:19.232646+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-08T07:11:19.232646+00:00'
+[2024-06-08T07:11:26.106+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-08T07:11:26.123+0000] {logging_mixin.py:188} INFO - from args: None
+[2024-06-08T07:11:26.136+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-08T07:11:26.137+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-08T07:11:26.705+0000] {logging_mixin.py:188} INFO - 20240608/output/20240608_finalRes.csv
+[2024-06-08T07:11:27.017+0000] {logging_mixin.py:188} INFO - id,name,type1,type2,hp,attack,defense,speed
+1,bulbasaur,grass,poision,45,49,49,45
+4,charmander,fire,,39,52,42,65
+7,squirtle,water,,44,48,65,43
+2,ivy,grass,poision,55,59,59,55
+5,charmelon,fire,,49,62,52,75
+8,warturtle,water,,54,58,75,53
+[2024-06-08T07:11:27.018+0000] {logging_mixin.py:188} INFO - [['1', 'bulbasaur', 'grass', 'poision', '45', '49', '49', '45'], ['4', 'charmander', 'fire', '', '39', '52', '42', '65'], ['7', 'squirtle', 'water', '', '44', '48', '65', '43'], ['2', 'ivy', 'grass', 'poision', '55', '59', '59', '55'], ['5', 'charmelon', 'fire', '', '49', '62', '52', '75'], ['8', 'warturtle', 'water', '', '54', '58', '75', '53']]
+[2024-06-08T07:11:27.018+0000] {Etl_Dag.py:443} INFO - preparing to upload data to db
+[2024-06-08T07:11:27.029+0000] {base.py:84} INFO - Using connection ID 'mysql_conn' for task execution.
+[2024-06-08T07:11:27.043+0000] {Etl_Dag.py:471} INFO - working on row('1', 'bulbasaur')
+[2024-06-08T07:11:27.046+0000] {Etl_Dag.py:471} INFO - working on row('4', 'charmander')
+[2024-06-08T07:11:27.049+0000] {Etl_Dag.py:471} INFO - working on row('7', 'squirtle')
+[2024-06-08T07:11:27.052+0000] {Etl_Dag.py:471} INFO - working on row('2', 'ivy')
+[2024-06-08T07:11:27.056+0000] {Etl_Dag.py:471} INFO - working on row('5', 'charmelon')
+[2024-06-08T07:11:27.058+0000] {Etl_Dag.py:471} INFO - working on row('8', 'warturtle')
+[2024-06-08T07:11:27.062+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-08T07:11:27.064+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-08T07:11:27.076+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_t1, task_id=upsertDbTest, run_id=manual__2024-06-08T07:11:19.232646+00:00, execution_date=20240608T071119, start_date=20240608T071125, end_date=20240608T071127
+[2024-06-08T07:11:27.132+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-08T07:11:27.183+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-08T07:11:27.188+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

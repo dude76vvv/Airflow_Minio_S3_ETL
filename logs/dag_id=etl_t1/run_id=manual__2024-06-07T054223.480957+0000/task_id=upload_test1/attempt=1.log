@@ -1,0 +1,48 @@
+[2024-06-07T05:42:29.962+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-07T05:42:29.981+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [queued]>
+[2024-06-07T05:42:29.992+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [queued]>
+[2024-06-07T05:42:29.993+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-07T05:42:30.009+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_test1> on 2024-06-07 05:42:23.480957+00:00
+[2024-06-07T05:42:30.017+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'upload_test1', 'manual__2024-06-07T05:42:23.480957+00:00', '--job-id', '12', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpo8pmaoj8']
+[2024-06-07T05:42:30.019+0000] {standard_task_runner.py:91} INFO - Job 12: Subtask upload_test1
+[2024-06-07T05:42:30.021+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=8656) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-07T05:42:30.023+0000] {standard_task_runner.py:63} INFO - Started process 8665 to run task
+[2024-06-07T05:42:30.069+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [running]> on host 6c00989aad97
+[2024-06-07T05:42:30.164+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='upload_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-07T05:42:23.480957+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-07T05:42:23.480957+00:00'
+[2024-06-07T05:42:30.166+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-07T05:42:30.180+0000] {logging_mixin.py:188} INFO - prepare to upload csv file
+[2024-06-07T05:42:30.192+0000] {logging_mixin.py:188} INFO - one
+[2024-06-07T05:42:30.200+0000] {logging_mixin.py:188} INFO - {'timeStamp': '20240607134228', 'filePath': '//opt/***/dags/local/20240607134228_output.csv'}
+[2024-06-07T05:42:30.211+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-07T05:42:30.212+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-07T05:42:30.623+0000] {logging_mixin.py:188} INFO - 20240607134228
+[2024-06-07T05:42:30.624+0000] {logging_mixin.py:188} INFO - 20240607
+[2024-06-07T05:42:30.625+0000] {logging_mixin.py:188} INFO - 20240607/output/20240607134228_output.csv
+[2024-06-07T05:42:30.625+0000] {logging_mixin.py:188} INFO - //opt/***/dags/local/20240607134228_output.csv
+[2024-06-07T05:42:30.628+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-07T05:42:30.628+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 244, in uploadToCsv
+    print("file exist ???: "+ localFileExist)
+          ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+TypeError: can only concatenate str (not "bool") to str
+[2024-06-07T05:42:30.640+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=etl_t1, task_id=upload_test1, run_id=manual__2024-06-07T05:42:23.480957+00:00, execution_date=20240607T054223, start_date=20240607T054229, end_date=20240607T054230
+[2024-06-07T05:42:30.654+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 12 for task upload_test1 (can only concatenate str (not "bool") to str; 8665)
+[2024-06-07T05:42:30.679+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-07T05:42:30.706+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-07T05:42:30.708+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,47 @@
+[2024-06-08T03:03:18.306+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-08T03:03:18.443+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 scheduled__2024-06-07T00:00:00+00:00 [queued]>
+[2024-06-08T03:03:19.002+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 scheduled__2024-06-07T00:00:00+00:00 [queued]>
+[2024-06-08T03:03:19.017+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-08T03:03:20.004+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_test1> on 2024-06-07 00:00:00+00:00
+[2024-06-08T03:03:20.260+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'ingest_test1', 'scheduled__2024-06-07T00:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpd5851yit']
+[2024-06-08T03:03:20.532+0000] {standard_task_runner.py:91} INFO - Job 30: Subtask ingest_test1
+[2024-06-08T03:03:20.922+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=167) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-08T03:03:20.968+0000] {standard_task_runner.py:63} INFO - Started process 191 to run task
+[2024-06-08T03:03:22.505+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.ingest_test1 scheduled__2024-06-07T00:00:00+00:00 [running]> on host 6c00989aad97
+[2024-06-08T03:03:22.897+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='ingest_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-07T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-07T00:00:00+00:00'
+[2024-06-08T03:03:22.899+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-08T03:03:22.982+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-08T03:03:22.997+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-08T03:03:25.199+0000] {logging_mixin.py:188} INFO - bucket pokedex-bucket already exists !
+[2024-06-08T03:03:25.203+0000] {logging_mixin.py:188} INFO - 20240608 here
+[2024-06-08T03:03:25.203+0000] {logging_mixin.py:188} INFO - 20240608/landing/
+[2024-06-08T03:03:25.328+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-08T03:03:25.330+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 112, in ingest2
+    csvFiles = list(filter(lambda x: x.split('.')[1] == 'csv', ls_files))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/Etl_Dag.py", line 112, in <lambda>
+    csvFiles = list(filter(lambda x: x.split('.')[1] == 'csv', ls_files))
+                                     ~~~~~~~~~~~~^^^
+IndexError: list index out of range
+[2024-06-08T03:03:25.435+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=etl_t1, task_id=ingest_test1, run_id=scheduled__2024-06-07T00:00:00+00:00, execution_date=20240607T000000, start_date=20240608T030318, end_date=20240608T030325
+[2024-06-08T03:03:25.578+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 30 for task ingest_test1 (list index out of range; 191)
+[2024-06-08T03:03:25.662+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-08T03:03:25.694+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-08T03:03:25.707+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

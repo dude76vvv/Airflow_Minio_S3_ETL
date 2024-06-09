@@ -1,0 +1,30 @@
+[2024-06-07T05:49:59.254+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-07T05:49:59.276+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [queued]>
+[2024-06-07T05:49:59.286+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [queued]>
+[2024-06-07T05:49:59.287+0000] {taskinstance.py:2306} INFO - Starting attempt 3 of 3
+[2024-06-07T05:49:59.302+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): upload_test1> on 2024-06-07 05:42:23.480957+00:00
+[2024-06-07T05:49:59.311+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'upload_test1', 'manual__2024-06-07T05:42:23.480957+00:00', '--job-id', '14', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmp174uex1g']
+[2024-06-07T05:49:59.314+0000] {standard_task_runner.py:91} INFO - Job 14: Subtask upload_test1
+[2024-06-07T05:49:59.318+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=8938) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-07T05:49:59.321+0000] {standard_task_runner.py:63} INFO - Started process 8940 to run task
+[2024-06-07T05:49:59.376+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.upload_test1 manual__2024-06-07T05:42:23.480957+00:00 [running]> on host 6c00989aad97
+[2024-06-07T05:49:59.490+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='upload_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-07T05:42:23.480957+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-07T05:42:23.480957+00:00'
+[2024-06-07T05:49:59.491+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-07T05:49:59.507+0000] {logging_mixin.py:188} INFO - prepare to upload csv file
+[2024-06-07T05:49:59.518+0000] {logging_mixin.py:188} INFO - one
+[2024-06-07T05:49:59.527+0000] {logging_mixin.py:188} INFO - {'timeStamp': '20240607134228', 'filePath': '//opt/***/dags/local/20240607134228_output.csv'}
+[2024-06-07T05:49:59.539+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-07T05:49:59.540+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-07T05:50:00.037+0000] {logging_mixin.py:188} INFO - 20240607134228
+[2024-06-07T05:50:00.038+0000] {logging_mixin.py:188} INFO - 20240607
+[2024-06-07T05:50:00.038+0000] {logging_mixin.py:188} INFO - 20240607/output/20240607134228_output.csv
+[2024-06-07T05:50:00.039+0000] {logging_mixin.py:188} INFO - //opt/***/dags/local/20240607134228_output.csv
+[2024-06-07T05:50:00.040+0000] {logging_mixin.py:188} INFO - file exist ???:True
+[2024-06-07T05:50:00.041+0000] {logging_mixin.py:188} INFO - creating nextDayFolder...
+[2024-06-07T05:50:00.062+0000] {logging_mixin.py:188} INFO - prefix for next day already exist
+[2024-06-07T05:50:00.063+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-07T05:50:00.064+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-07T05:50:00.075+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_t1, task_id=upload_test1, run_id=manual__2024-06-07T05:42:23.480957+00:00, execution_date=20240607T054223, start_date=20240607T054959, end_date=20240607T055000
+[2024-06-07T05:50:00.101+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-07T05:50:00.118+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-07T05:50:00.120+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

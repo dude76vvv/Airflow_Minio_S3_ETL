@@ -1,0 +1,4 @@
+id,name,type1,type2,hp,attack,defense,speed
+1,bulbasaur,grass,poision,45,49,49,45
+4,charmander,fire,,39,52,42,65
+7,squirtle,water,,44,48,65,43

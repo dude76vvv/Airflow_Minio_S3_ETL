@@ -1,0 +1,125 @@
+[2024-06-06T03:50:43.937+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T03:50:44.024+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T03:50:44.058+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T03:50:44.061+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T03:50:44.126+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_boto> on 2024-06-05 00:00:00+00:00
+[2024-06-06T03:50:44.168+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1827) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T03:50:44.180+0000] {standard_task_runner.py:63} INFO - Started process 1849 to run task
+[2024-06-06T03:50:44.187+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_boto', 'scheduled__2024-06-05T00:00:00+00:00', '--job-id', '288', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpw7_sviyh']
+[2024-06-06T03:50:44.225+0000] {standard_task_runner.py:91} INFO - Job 288: Subtask test_boto
+[2024-06-06T03:50:44.487+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T03:50:44.725+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_boto' AIRFLOW_CTX_EXECUTION_DATE='2024-06-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-05T00:00:00+00:00'
+[2024-06-06T03:50:44.727+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T03:50:44.810+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-06T03:50:44.814+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-06T03:50:46.306+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T03:50:46.307+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/TestConnectionDag.py", line 38, in botoTest
+    exist1 = s3.check_for_key('pkm1.csv')
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 135, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 89, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 922, in check_for_key
+    obj = self.head_object(key, bucket_name)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 135, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 89, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 902, in head_object
+    return self.get_conn().head_object(Bucket=bucket_name, Key=key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 553, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 946, in _make_api_call
+    api_params = self._emit_api_params(
+                 ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/client.py", line 1072, in _emit_api_params
+    self.meta.events.emit(
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+               ^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/botocore/handlers.py", line 282, in validate_bucket_name
+    if not VALID_BUCKET.search(bucket) and not VALID_S3_ARN.search(bucket):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: expected string or bytes-like object, got 'NoneType'
+[2024-06-06T03:50:46.323+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=dag_testConnection_v1, task_id=test_boto, run_id=scheduled__2024-06-05T00:00:00+00:00, execution_date=20240605T000000, start_date=20240606T035044, end_date=20240606T035046
+[2024-06-06T03:50:46.354+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 288 for task test_boto (expected string or bytes-like object, got 'NoneType'; 1849)
+[2024-06-06T03:50:46.399+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-06-06T03:50:46.433+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T03:50:46.438+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-06T04:09:28.557+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T04:09:28.599+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T04:09:28.626+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T04:09:28.627+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T04:09:28.670+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_boto> on 2024-06-05 00:00:00+00:00
+[2024-06-06T04:09:28.687+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2372) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T04:09:28.691+0000] {standard_task_runner.py:63} INFO - Started process 2378 to run task
+[2024-06-06T04:09:28.690+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_boto', 'scheduled__2024-06-05T00:00:00+00:00', '--job-id', '307', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpadws540q']
+[2024-06-06T04:09:28.696+0000] {standard_task_runner.py:91} INFO - Job 307: Subtask test_boto
+[2024-06-06T04:09:28.858+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T04:09:29.243+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_boto' AIRFLOW_CTX_EXECUTION_DATE='2024-06-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-05T00:00:00+00:00'
+[2024-06-06T04:09:29.249+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T04:09:29.282+0000] {logging_mixin.py:188} INFO - <***.providers.amazon.aws.hooks.s3.S3Hook object at 0x7fa0aa579400>
+[2024-06-06T04:09:29.301+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-06T04:09:29.304+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-06T04:09:30.304+0000] {logging_mixin.py:188} INFO - True
+[2024-06-06T04:09:30.322+0000] {logging_mixin.py:188} INFO - bucket:$True, file exist:$True
+[2024-06-06T04:09:30.324+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-06T04:09:30.325+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T04:09:30.361+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_boto, run_id=scheduled__2024-06-05T00:00:00+00:00, execution_date=20240605T000000, start_date=20240606T040928, end_date=20240606T040930
+[2024-06-06T04:09:30.412+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T04:09:30.437+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T04:09:30.446+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
+[2024-06-06T04:10:00.245+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-06T04:10:00.331+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T04:10:00.384+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [queued]>
+[2024-06-06T04:10:00.386+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2024-06-06T04:10:00.483+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): test_boto> on 2024-06-05 00:00:00+00:00
+[2024-06-06T04:10:00.550+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2397) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-06T04:10:00.518+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'dag_testConnection_v1', 'test_boto', 'scheduled__2024-06-05T00:00:00+00:00', '--job-id', '311', '--raw', '--subdir', 'DAGS_FOLDER/TestConnectionDag.py', '--cfg-path', '/tmp/tmpm86ebl4k']
+[2024-06-06T04:10:00.563+0000] {standard_task_runner.py:91} INFO - Job 311: Subtask test_boto
+[2024-06-06T04:10:00.562+0000] {standard_task_runner.py:63} INFO - Started process 2402 to run task
+[2024-06-06T04:10:00.765+0000] {task_command.py:426} INFO - Running <TaskInstance: dag_testConnection_v1.test_boto scheduled__2024-06-05T00:00:00+00:00 [running]> on host fe4af7f6193a
+[2024-06-06T04:10:01.014+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='dag_testConnection_v1' AIRFLOW_CTX_TASK_ID='test_boto' AIRFLOW_CTX_EXECUTION_DATE='2024-06-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-06-05T00:00:00+00:00'
+[2024-06-06T04:10:01.019+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-06T04:10:01.064+0000] {logging_mixin.py:188} INFO - <***.providers.amazon.aws.hooks.s3.S3Hook object at 0x7fa0c19e7500>
+[2024-06-06T04:10:01.102+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-06T04:10:01.104+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-06T04:10:01.940+0000] {logging_mixin.py:188} INFO - True
+[2024-06-06T04:10:01.952+0000] {logging_mixin.py:188} INFO - bucket:$True, file exist:$True
+[2024-06-06T04:10:01.953+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-06T04:10:01.955+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-06T04:10:01.998+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=dag_testConnection_v1, task_id=test_boto, run_id=scheduled__2024-06-05T00:00:00+00:00, execution_date=20240605T000000, start_date=20240606T041000, end_date=20240606T041001
+[2024-06-06T04:10:02.039+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-06T04:10:02.065+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-06-06T04:10:02.070+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

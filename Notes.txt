@@ -1,0 +1,148 @@
+//airflow -- minio s3 connection
+
+{
+  "aws_access_key_id": "minio_admin",
+  "aws_secret_access_key": "minio_password",
+  "endpoint_url": "http://host.docker.internal:9000"
+}
+
+==============================
+//mysql -- connection
+
+    host : mySql    //as of docker service Name
+
+=============================
+airflow db migrate
+
+airflow dags list
+
+airflow db reset
+
+airflow info
+=================
+https://stackoverflow.com/questions/73181888/airflow-is-failing-my-dag-when-i-use-external-scripts-giving-modulenotfounderror
+
+https://stackoverflow.com/questions/72913749/modulenotfounderror-while-importing-airflow-dag
+
+https://stackoverflow.com/questions/67851401/airflow-not-recognize-local-directory-modulenotfounderror-no-module-named
+
+================================
+//test task
+    execute in webserver container !!!
+
+  airflow tasks test etl_t1 ingest_test1 2024-06-06
+
+  airflow tasks test etl_t1 upload_test1 2024-06-06
+
+  airflow tasks test etl_t1 customOperator_test 2024-06-06
+
+  airflow tasks test etl_t1 transformTest 2024-06-06
+
+  airflow tasks test etl_t1 upload_nextDay1 2024-06-06
+
+  airflow tasks test etl_t1 upsertDbTest 2024-06-06
+
+
+  Note:
+    test dont support xcom
+
+    airflow file path is buggy mess !!!
+
+=================================
+=>
+  bucketName/prefix/object
+
+
+s3_Obj =s3_hook.get_key(ls_keys[0],SourceBucket)
+
+s3.Object(bucket_name='bucket0', key='pkm1.csv')
+
+print(s3_Obj)         #s3.Object(bucket_name='bucket0', key='pkm1.csv')
+print(type(s3_Obj))   #<class 'boto3.resources.factory.s3.Object'>
+
+res = s3_Obj.get() 
+
+  {'ResponseMetadata': 
+    {'RequestId': '17D65F24CEA44459', 
+    'HostId': 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8', 
+    'HTTPStatusCode': 200, 
+    'HTTPHeaders': {'accept-ranges': 'bytes', 'content-length': '147', 'content-type': 'text/csv', 'etag': '"e308ccf11e6e1c7a18cec7c179cd892c"', 'last-modified': 'Wed, 05 Jun 2024 15:30:51 GMT', 'server': 'MinIO', 'strict-transport-security': 'max-age=31536000; includeSubDomains', 'vary': 'Origin, Accept-Encoding', 'x-amz-id-2': 'dd9025bab4ad464b049177c95eb6ebf374d3b3fd1af9251148b658df7ac2e3e8', 'x-amz-request-id': '17D65F24CEA44459', 'x-content-type-options': 'nosniff', 'x-xss-protection': '1; mode=block', 'date': 'Thu, 06 Jun 2024 09:08:39 GMT'}, 
+    'RetryAttempts': 0}, 
+
+  'AcceptRanges': 'bytes',
+  'LastModified': datetime.datetime(2024, 6, 5, 15, 30, 51, tzinfo=tzutc()), 
+  'ContentLength': 147, 'ETag': '"e308ccf11e6e1c7a18cec7c179cd892c"', 'ContentType': 'text/csv', 'Metadata': {}, 
+  'Body': <botocore.response.StreamingBody object at 0x7ffb11522d70>}
+
+res['Body'].read()      //byte string
+=====================
+
+https://stackoverflow.com/questions/30818341/how-to-read-a-csv-file-from-an-s3-bucket-using-pandas-in-python/46323684#46323684
+
+
+content2 = res['Body'].read().decode('utf-8')   //char string
+df1  =  pd.read_csv(StringIO(content2))
+
+===========
+
+NEVER grow a DataFrame row-wise!
+Accumulate data in a list, not a DataFrame.
+https://stackoverflow.com/questions/13784192/creating-an-empty-pandas-dataframe-and-then-filling-it
+
+=============
+https://stackoverflow.com/questions/16981921/relative-imports-in-python-3
+
+====================
+//upload
+
+load_file
+load_file_obj
+
+========================
+custom operator mysql
+  
+  https://medium.com/data-folks-indonesia/airflow-create-custom-operator-from-mysql-to-postgresql-a69d95a55c03
+
+  https://medium.com/jakartasmartcity/data-pipeline-using-apache-airflow-to-import-data-from-public-api-7ff719118ac8
+
+  https://www.basedash.com/blog/airflow-mysql-operator-guide
+
+>>
+  https://dev.to/seattledataguy/data-engineering-101-automating-your-first-data-extract-g6j
+
+=========================
+mysql insert
+
+  https://stackoverflow.com/questions/21740359/why-do-i-get-typeerror-not-all-arguments-converted-during-string-formatting-w
+  https://stackoverflow.com/questions/60923585/use-for-loop-with-sql-statement-to-insert-multiple-values-that-increment-by-1
+  https://stackoverflow.com/questions/31139263/how-to-insert-values-in-mysql-from-loop-in-python
+
+
+
+
+
+=============================
+get latest object from s3 object
+
+  //spread to same level for sorting easily
+
+  https://stackoverflow.com/questions/71325275/how-to-sort-nested-dictionary-by-values-in-python
+
+  https://stackoverflow.com/questions/45375999/how-to-download-the-latest-file-of-an-s3-bucket-using-boto3
+
+===================
+tempfile and dir
+
+  https://github.com/coder2j/airflow-docker/blob/main/dags/dag_with_postgres_hooks.py
+
+  https://safjan.com/mastering-temporary-files-and-directories-with-python-tempfile-module/
+
+  https://medium.com/@ashikranjan/creating-temporary-file-and-directory-using-python-tempfile-module-68db55a39cdd
+
+  https://stackoverflow.com/questions/64825310/downloading-data-directly-into-a-temporary-file-with-python-youtube-dl
+
+
+==============
+
+
+

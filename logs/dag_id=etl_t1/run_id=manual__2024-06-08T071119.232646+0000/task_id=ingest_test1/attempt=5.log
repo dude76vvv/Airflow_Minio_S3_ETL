@@ -1,0 +1,27 @@
+[2024-06-08T08:34:16.416+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-06-08T08:34:16.499+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T08:34:16.533+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [queued]>
+[2024-06-08T08:34:16.537+0000] {taskinstance.py:2306} INFO - Starting attempt 5 of 5
+[2024-06-08T08:34:16.588+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): ingest_test1> on 2024-06-08 07:11:19.232646+00:00
+[2024-06-08T08:34:16.635+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3492) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2024-06-08T08:34:16.637+0000] {standard_task_runner.py:63} INFO - Started process 3502 to run task
+[2024-06-08T08:34:16.618+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'etl_t1', 'ingest_test1', 'manual__2024-06-08T07:11:19.232646+00:00', '--job-id', '64', '--raw', '--subdir', 'DAGS_FOLDER/Etl_Dag.py', '--cfg-path', '/tmp/tmpth6c5b9m']
+[2024-06-08T08:34:16.640+0000] {standard_task_runner.py:91} INFO - Job 64: Subtask ingest_test1
+[2024-06-08T08:34:16.832+0000] {task_command.py:426} INFO - Running <TaskInstance: etl_t1.ingest_test1 manual__2024-06-08T07:11:19.232646+00:00 [running]> on host 6c00989aad97
+[2024-06-08T08:34:17.272+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='etl_t1' AIRFLOW_CTX_TASK_ID='ingest_test1' AIRFLOW_CTX_EXECUTION_DATE='2024-06-08T07:11:19.232646+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-06-08T07:11:19.232646+00:00'
+[2024-06-08T08:34:17.280+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-06-08T08:34:17.396+0000] {base.py:84} INFO - Using connection ID 's3_conn' for task execution.
+[2024-06-08T08:34:17.409+0000] {connection_wrapper.py:387} INFO - AWS Connection (conn_id='s3_conn', conn_type='aws') credentials retrieved from extra.
+[2024-06-08T08:34:18.707+0000] {logging_mixin.py:188} INFO - 20240608 here
+[2024-06-08T08:34:18.710+0000] {logging_mixin.py:188} INFO - 20240608/landing/
+[2024-06-08T08:34:18.755+0000] {logging_mixin.py:188} INFO - ['20240608/landing/', '20240608/landing/dummy2.txt', '20240608/landing/pkm3.csv']
+[2024-06-08T08:34:18.756+0000] {logging_mixin.py:188} INFO - ['20240608/landing/pkm3.csv']
+[2024-06-08T08:34:18.757+0000] {logging_mixin.py:188} INFO - working on file20240608/landing/pkm3.csv
+[2024-06-08T08:34:19.049+0000] {logging_mixin.py:188} INFO - //opt/***/dags/../local/20240608163419_combined.csv
+[2024-06-08T08:34:19.057+0000] {logging_mixin.py:188} INFO - {'timeStamp': '20240608163419', 'filePath': '//opt/***/dags/../local/20240608163419_combined.csv'}
+[2024-06-08T08:34:19.134+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-06-08T08:34:19.138+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-06-08T08:34:19.155+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=etl_t1, task_id=ingest_test1, run_id=manual__2024-06-08T07:11:19.232646+00:00, execution_date=20240608T071119, start_date=20240608T083416, end_date=20240608T083419
+[2024-06-08T08:34:19.216+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-06-08T08:34:19.251+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-06-08T08:34:19.259+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
